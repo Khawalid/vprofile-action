@@ -95,11 +95,14 @@ jobs:
 
       - name: Login to ECR
         shell: bash
-        run: >
-          kubectl create secret docker-registry regcred
-          --docker-server=${{ secrets.REGISTRY }}
-          --docker-username=AWS
-          --docker-password="$(aws ecr get-login-password)"
+        run: |
+          aws ecr get-login-password --region ${{ env.AWS_REGION }} > password.txt
+          kubectl create secret docker-registry regcred \
+            --docker-server=${{ secrets.REGISTRY }} \
+            --docker-username=AWS \
+            --docker-password="$(cat password.txt)" \
+            --dry-run=client -o yaml | kubectl apply -f -
+      
        
 
       - name: Deploy Helm
