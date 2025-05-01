@@ -100,11 +100,8 @@ jobs:
           kubectl create secret docker-registry regcred \
             --docker-server=${{ secrets.REGISTRY }} \
             --docker-username=AWS \
-            --docker-password="$(cat password.txt)" \
-            --dry-run=client -o yaml | kubectl apply -f -
-      
-       
-
+            --docker-password="$(cat password.txt)"
+            
       - name: Deploy Helm
         uses: bitovi/github-actions-deploy-eks-helm@v1.2.8
         with:
