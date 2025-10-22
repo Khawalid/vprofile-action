@@ -25,7 +25,7 @@ The workflow automates testing, code analysis, image building, and Helm-based de
 |--------|-------------|
 | 🧪 **Testing** | Runs Maven unit tests and Checkstyle validation |
 | 🔍 **Static Analysis** | Executes SonarQube scan & enforces quality gate |
-| 🐳 **Build & Push** | Builds Docker image and pushes to AWS ECR |
+| 🐳 **Build & Push** | Build Docker images and pushes to AWS ECR |
 | ☸️ **Deploy to EKS** | Deploys Helm chart to EKS cluster |
 
 Triggered automatically on every **push to the `main`** branch.  
